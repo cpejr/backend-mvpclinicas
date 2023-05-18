@@ -10,6 +10,8 @@ const UsuarioSchema = new Schema({
   email: String,
   senha: String,
   avatar_url: String,
+  crm: String,
+  uni_federativa: String,
   admin: Boolean,
 });
 
