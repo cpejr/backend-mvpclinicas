@@ -10,9 +10,11 @@ const UsuarioSchema = new Schema ({
     email : String,
     senha : String,
     avatar_url : String,
+    crm : String,
+    uni_federativa : String,
     admin : Boolean,
 })
 
 const UsuarioModel = mongoose.model('/usuarios', UsuarioSchema);
 
-modules.export = UsuarioModel;
+module.export = UsuarioModel;
