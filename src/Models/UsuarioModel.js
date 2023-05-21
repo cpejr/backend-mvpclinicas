@@ -13,6 +13,6 @@ const UsuarioSchema = new Schema ({
     admin : Boolean,
 })
 
-const UsuarioModel = mongoose.model('/usuarios', UsuarioSchema);
+const UsuarioModel = mongoose.model('usuarios', UsuarioSchema);
 
-modules.export = UsuarioModel;
+module.exports = UsuarioModel;
