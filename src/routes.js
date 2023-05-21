@@ -5,6 +5,8 @@ const ComentarioController = require("./Controllers/ComentarioController");
 const rotas = Router();
 
 rotas.get('/locais', LocalController.read);
-rotas.get('/comentarios/:local', ComentarioController.readByLocal);
+rotas.get('/locais/:id_local', LocalController.readById);
+
+rotas.get('/comentarios/:id_local', ComentarioController.readByLocal);
 
 module.exports = rotas;
