@@ -10,7 +10,7 @@ const create = validateRequest({
         senha : z.string({ required_error: "A senha é obrigatória" }),
         crm : z.string({ required_error: "O CRM é obrigatório" }),
         uni_federativa : z.string({ required_error: "A unidade federativa é obrigatória" }),
-        avatar_url : z.string({required_error: "O avatar_url é obrigatório"}),
+        
     }),
 
 });

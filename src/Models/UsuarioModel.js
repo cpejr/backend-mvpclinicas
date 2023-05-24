@@ -27,6 +27,7 @@ const UsuarioSchema = new Schema ({
       },
       avatar_url: {
         type: String,
+        required: false,
       },
       crm: {
         type: String,
