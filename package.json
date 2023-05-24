@@ -13,6 +13,8 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "mongoose": "^7.1.1",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "zod": "^3.21.4",
+    "zod-express-middleware": "^1.4.0"
   }
 }

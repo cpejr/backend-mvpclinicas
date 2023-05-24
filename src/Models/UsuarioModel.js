@@ -10,6 +10,7 @@ const UsuarioSchema = new Schema ({
       telefone: {
         type: String,
         required: true,
+        unique: true, 
       },
       data_nascimento: {
         type: Date,
@@ -18,6 +19,7 @@ const UsuarioSchema = new Schema ({
       email: {
         type: String,
         required: true,
+        unique : true,
       },
       senha: {
         type: String,
@@ -30,6 +32,7 @@ const UsuarioSchema = new Schema ({
       crm: {
         type: String,
         required: true,
+        unique: true,
       },
       uni_federativa: {
         type: String,

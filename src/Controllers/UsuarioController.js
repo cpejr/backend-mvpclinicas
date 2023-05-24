@@ -3,9 +3,14 @@ const UsuarioModel = require("../Models/UsuarioModel");
 class UsuarioController {
 
     async create (req, res) {
-        const usuarios = await UsuarioModel.create(req.body);
+        try {
+            const usuarios = await UsuarioModel.create(req.body);
 
-        return res.status(200).json(usuarios);
+            return res.status(200).json(usuarios);
+
+        } catch (error) {
+            res.status(500).json({message: "Erro!!", error:error.message});
+        }
     }
     
 }
