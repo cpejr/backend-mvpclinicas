@@ -3,16 +3,43 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const UsuarioSchema = new Schema ({
-    id_usuario : String,
-    nome : String,
-    telefone : String,
-    data_nascimento : String,
-    email : String,
-    senha : String,
-    avatar_url : String,
-    crm : String,
-    uni_federativa : String,
-    admin : Boolean,
+    nome: {
+        type: String,
+        required: true,
+      },
+      telefone: {
+        type: String,
+        required: true,
+      },
+      data_nascimento: {
+        type: Date,
+        required: true,
+      },
+      email: {
+        type: String,
+        required: true,
+      },
+      senha: {
+        type: String,
+        required: true,
+      },
+      avatar_url: {
+        type: String,
+        required: true,
+      },
+      crm: {
+        type: String,
+        required: true,
+      },
+      uni_federativa: {
+        type: String,
+        required: true,
+      },
+      admin: {
+        type: Boolean,
+        required: true,
+        default: false
+      },
 })
 
 const UsuarioModel = mongoose.model('usuarios', UsuarioSchema);
