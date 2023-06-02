@@ -22,8 +22,8 @@ function verificarJwt(req, res, next) {
  jwt.verify(token, process.env.JWT_SECRET, (err, usuario) => {
    if(err) return res.status(403).json({message:"JWT token inválido"});
    
-   req.usuarioId = usuario.id
-next();
+   req.usuarioId = usuario.id;
+   next();
  });
 }
 
