@@ -3,6 +3,7 @@ const LocalController = require("./Controllers/LocalController");
 const UsuarioController = require("./Controllers/UsuarioController");
 const AuthController = require("./Controllers/AuthController");
 const AuthValidator = require("./Validators/AuthValidator");
+const verificarJwt = require ("./Middlewares/verificarJwt");
 
 const rotas = Router();
 
