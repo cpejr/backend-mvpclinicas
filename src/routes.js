@@ -14,3 +14,12 @@ rotas.get('/locais/:id_local', LocalController.readById);
 rotas.post('/login', AuthValidator.login, AuthController.login);
 
 module.exports = rotas;
+const { Router } = require("express");
+const UsuarioController = require("./Controllers/UsuarioController");
+const UsuarioValidator = require("./Validators/UsuarioValidator");
+
+const rotas = Router();
+
+rotas.post('/usuarios', UsuarioValidator.create, UsuarioController.create);
+rotas.get('/usuarios', UsuarioController.read);
+module.exports = rotas;
