@@ -13,7 +13,7 @@ class AuthController {
    if(!usuarioEncontrado)
      return res.status(403).json({message: "E-mail ou senha inválidos"});
      
-     const ehCorrespondente = await bycript.compare(senha, usuarioEncontrado.senha);
+     const ehCorrespondente = await bcrypt.compare(senha, usuarioEncontrado.senha);
      if(!ehCorrespondente)
       return res.status(403).json({message: "E-mail ou senha inválidos"});
     
@@ -22,7 +22,7 @@ class AuthController {
     const token =  jwt.sign({
       usuario
     }, process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES_IN }
+      { expiresIn: process.env.JWT_EXPIRE_IN }
     );
 
   res.status(200).json({ token });

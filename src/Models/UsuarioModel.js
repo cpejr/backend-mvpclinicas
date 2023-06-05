@@ -25,6 +25,7 @@ const UsuarioSchema = new Schema ({
       senha: {
         type: String,
         required: true,
+        select: false, 
       },
       avatar_url: {
         type: String,
@@ -44,8 +45,8 @@ const UsuarioSchema = new Schema ({
         required: true,
         default: false
       },
-})
-/*UsuarioSchema.pre("save", async function(next){
+});
+UsuarioSchema.pre("save", async function(next){
   const user = this
    
   if(user.isModified("senha")){
@@ -53,6 +54,13 @@ const UsuarioSchema = new Schema ({
     const hash = await bcrypt.hash(user.senha, salt);
     
     user.senha = hash;
+
+    console.log(salt , hash);
+
+  }
+
+next()
+});
 
 const UsuarioModel = mongoose.model('usuarios', UsuarioSchema);
 

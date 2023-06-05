@@ -1,3 +1,4 @@
+const { hash } = require("bcrypt");
 const UsuarioModel = require("../Models/UsuarioModel");
 
 class UsuarioController {
@@ -6,6 +7,8 @@ class UsuarioController {
         try {
 
             const usuarios = await UsuarioModel.create(req.body);
+            
+            const { senha, ...novoUsuario} = usuario.toObject();
 
             return res.status(200).json({ message: 'Usuário cadastrado com sucesso!', usuarios });
 
