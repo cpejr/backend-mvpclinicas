@@ -1,21 +1,28 @@
 const mongoose = require("mongoose");
- 
+
 const Schema = mongoose.Schema;
 
-const ComentarioSchema = new Schema ({
-    id_comentario : String,
-    id_usuario : {
-        type : Schema.Types.ObjectId,
-        ref : 'usuarios'
-    },
-    id_local : {
-        type : Schema.Types.ObjectId,
-        ref : 'locais'
-    },
-    comentario : String,
-    avaliacao : String,
-})
+const ComentarioSchema = new Schema({
+  id_usuario: {
+    type: Schema.Types.ObjectId,
+    ref: "usuarios",
+    required: true,
+  },
+  id_local: {
+    type: Schema.Types.ObjectId,
+    ref: "locais",
+    required: true,
+  },
+  comentario: {
+    type: String,
+    required: true,
+  },
+  avaliacao: {
+    type: String,
+    required: true,
+  }
+});
 
-const ComentarioModel = mongoose.model('/comentarios', ComentarioSchema);
+const ComentarioModel = mongoose.model("comentarios", ComentarioSchema);
 
-modules.export = ComentarioModel;
+module.exports = ComentarioModel;
