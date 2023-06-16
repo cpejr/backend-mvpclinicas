@@ -9,18 +9,18 @@ const UsuarioSchema = new Schema({
     unique: true,
   },
   telefone: {
-    type: Number,
+    type: String,
     unique: true,
   }, 
   crm: {
-    type: Number,
+    type: String,
     unique: true,
   },
   avatar_url: {
     type: String,
   },
   data_nascimento: {
-    type: Date  
+    type: String,
   },
   email: {
     type: String,
