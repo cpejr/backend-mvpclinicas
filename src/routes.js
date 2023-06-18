@@ -10,6 +10,8 @@ rotas.get('/locais/:id_local', LocalController.readById);
 
 rotas.get('/usuarios', UsuarioController.read);
 rotas.get('/usuarios/:id', UsuarioController.readById);
+rotas.put('/usuarios/:id', UsuarioController.update);
+rotas.delete('/usuarios/:id', UsuarioController.destroy);
 
 rotas.get('/locais', LocalController.read);
 rotas.get('/locais/:id_local', LocalController.readById);

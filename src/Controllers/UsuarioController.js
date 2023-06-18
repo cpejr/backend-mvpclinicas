@@ -14,6 +14,24 @@ class UsuarioController {
 
     return res.status(200).json(usuario);
   }
+
+  async update(req, res) {
+    const { id } = req.params;
+
+    const usuario = await UsuarioModel.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+
+    return res.status(200).json(usuario);
+  }
+
+  async destroy(req, res) {
+    const { id } = req.params;
+
+    const usuario = await UsuarioModel.findByIdAndDelete(id);
+
+    return res.status(200).json(usuario);
+  }
 }
 
 module.exports = new UsuarioController();
