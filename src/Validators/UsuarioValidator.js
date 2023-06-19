@@ -18,7 +18,7 @@ const update = validateRequest({
     avatar_url: z.string().optional(),
     crm: z.string().optional(),
     uni_federativa: z.string().optional(),
-    admin: z.boolean(),
+    admin: z.boolean().optional(),
   }),
   params: z.object({
     id: z.custom(mongoose.isValidObjectId, "O id não é válido"),
