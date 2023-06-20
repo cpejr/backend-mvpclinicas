@@ -6,11 +6,9 @@ const {
   PutBucketCorsCommand,
   PutObjectCommand,
   S3Client,
-} = require('@aws-sdk/client-s3');
-
-const isDevEnvironment = require('../../utils/general/eAmbienteDeDesenvolvimento.js');
-const randomFileName = require('../../utils/general/nomeAleatoriodeArquivo.js');
-const { S3RVER_ENDPOINT } = require('./s3rver.js');
+} = require("@aws-sdk/client-s3");
+require("dotenv").config(); // Possível resolver o processamento do .env de outra maneira. Pode checar o IZT, no package.json
+const randomFileName = require("../../utils/general/nomeAleatoriodeArquivo.js");
 
 const s3 = new S3Client({
   region: process.env.AWS_REGION,
@@ -18,7 +16,6 @@ const s3 = new S3Client({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
-  ...(isDevEnvironment && { endpoint: S3RVER_ENDPOINT }),
 });
 
 async function getFile(key) {
@@ -31,14 +28,15 @@ async function getFile(key) {
 }
 
 async function uploadFile({ file, ACL }) {
-  const key = randomFileName(file.name);
+  const key = randomFileName(file.originalname);
   const params = {
     Bucket: process.env.AWS_BUCKET_NAME,
     Body: file.buffer,
     Key: key,
-    ContentType: file.mimeType,
+    ContentType: file.mimetype,
     ACL,
   };
+
   await s3.send(new PutObjectCommand(params));
   return { key, ...file };
 }
@@ -81,13 +79,13 @@ async function getCors() {
 }
 
 async function configCors({
-  allowedOrigins = ['*'],
-  allowedMethods = ['POST', 'GET', 'PUT', 'DELETE', 'HEAD'],
+  allowedOrigins = ["*"],
+  allowedMethods = ["POST", "GET", "PUT", "DELETE", "HEAD"],
   exposeHeaders = [],
   maxAgeSeconds = 3000,
 } = {}) {
   const config = {
-    AllowedHeaders: ['Authorization', 'Content-Type'],
+    AllowedHeaders: ["Authorization", "Content-Type"],
     AllowedMethods: allowedMethods,
     AllowedOrigins: allowedOrigins,
     ExposeHeaders: exposeHeaders,
