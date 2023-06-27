@@ -8,7 +8,7 @@ class UsuarioController {
 
             const usuarios = await UsuarioModel.create(req.body);
             
-            const { senha, ...novoUsuario} = usuario.toObject();
+            const { senha, ...novoUsuario} = usuarios.toObject();
 
             return res.status(200).json({ message: 'Usuário cadastrado com sucesso!', usuarios });
 
