@@ -17,6 +17,19 @@ class ComentarioController {
 
     return res.status(200).json({ comentarios, media_avaliacao });
   }
+  async create(req,res) {
+    const { id_local } = req.params;
+    const data = req.body;
+
+    const comentario = await ComentarioModel.create({
+      id_usuario: data.id_usuario,
+      id_local: id_local,
+      avaliacao: data.avaliacao,
+      comentario: data.comentario
+    })
+    
+    return res.sendStatus(201);
+  }
 }
 
 module.exports = new ComentarioController();

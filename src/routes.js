@@ -15,5 +15,6 @@ rotas.get('/locais', LocalController.read);
 rotas.get('/locais/:id_local', LocalController.readById);
 
 rotas.get('/comentarios/:id_local', ComentarioController.readByLocal);
+rotas.post('/comentarios/:id_local', ComentarioController.create);
 
 module.exports = rotas;
