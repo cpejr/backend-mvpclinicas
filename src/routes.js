@@ -7,6 +7,7 @@ const rotas = Router();
 
 rotas.get('/locais', LocalController.read);
 rotas.get('/locais/:id_local', LocalController.readById);
+rotas.post('/locais', LocalController.create);
 
 rotas.get('/usuarios', UsuarioController.read);
 rotas.get('/usuarios/:id', UsuarioController.readById);
