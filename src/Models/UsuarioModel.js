@@ -27,10 +27,16 @@ const UsuarioSchema = new Schema({
     type: String,
     required: true,
   },
-  crm: {
+  registro: {
     type: String,
     required: true,
   },
+
+  formacao: {
+    type: String,
+    required: true,
+  },
+  
   uni_federativa: {
     type: String,
     required: true,
