@@ -23,10 +23,10 @@ const LocalSchema = new Schema({
         type: String,
         required: true,
     },
-    foto_url: {
-        type: String,
-        required: true,
-    },
+    // foto_url: {
+    //     type: String,
+    //     required: true,
+    // },
 });
 
 const LocalModel = mongoose.model("locais", LocalSchema);
