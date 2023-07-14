@@ -9,7 +9,7 @@ const create = validateRequest({
     setor: z.string({ required_error: "O setor é obrigatória" }),
     empresa: z.string({ required_error: "O empresa é obrigatória" }),
     endereco: z.string({ required_error: "O endereco é obrigatória" }),
-    foto_url: z.string({ required_error: "O foto_url é obrigatória" }),
+    // foto_url: z.string({ required_error: "O foto_url é obrigatória" }),
   }),
 });
 
