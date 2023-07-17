@@ -7,8 +7,7 @@ function verificarJwt(req, res, next) {
  .status(403)
  .json({message:"Header de autorização não encontrado"});
 
- const [bearer, token] = authHeader.split(""); 
-
+ const [bearer, token] = authHeader.split(" "); 
  if(!/^Bearer$/.test(bearer)) 
  return res
  .status(403)
@@ -19,7 +18,7 @@ function verificarJwt(req, res, next) {
  .status(403)
  .json({message:"JWT token não encontrado"});
 
- jwt.verify(token, process.env.JWT_SECRET, (err, usuario) => {
+ jwt.verify(token, process.env.JWT_SECRET, (err,{usuario}) => {
    if(err) return res.status(403).json({message:"JWT token inválido"});
    
    req.usuarioId = usuario.id;
