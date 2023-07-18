@@ -55,7 +55,7 @@ UsuarioSchema.pre("save", async function(next){
     
     user.senha = hash;
 
-    console.log(salt , hash);
+const UsuarioModel = mongoose.model('/usuarios', UsuarioSchema);
 
   }
 

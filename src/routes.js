@@ -4,6 +4,7 @@ const AuthController = require("./Controllers/AuthController");
 const AuthValidator = require("./Validators/AuthValidator");
 const verificarJwt = require ("./Middlewares/verificarJwt");
 const verificarUsuario = require("./Middlewares/verificarUsuario");
+const ComentarioController = require("./Controllers/ComentarioController");
 const UsuarioController = require("./Controllers/UsuarioController");
 const UsuarioValidator = require("./Validators/UsuarioValidator");
 
@@ -17,5 +18,9 @@ rotas.get('/locais/:id_local', LocalController.readById);
 
 rotas.post('/login', AuthValidator.login, AuthController.login);
 
-module.exports = rotas;
+rotas.get('/usuarios', UsuarioController.read);
+rotas.get('/usuarios/:id', UsuarioController.readById);
 
+rotas.get('/comentarios/:id_local', ComentarioController.readByLocal);
+
+module.exports = rotas;
