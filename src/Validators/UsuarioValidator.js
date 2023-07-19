@@ -8,7 +8,8 @@ const create = validateRequest({
         data_nascimento : z.string({ required_error: "A data de nascimento é obrigatória" }),
         email : z.string({ required_error: "O email é obrigatório" }).email("O email é inválido"),
         senha : z.string({ required_error: "A senha é obrigatória" }),
-        crm : z.string({ required_error: "O CRM é obrigatório" }),
+        registro : z.string({ required_error: "O resgistro é obrigatório" }),
+        formacao : z.string({required_error: "A formação profissional é obrigatória"}),
         uni_federativa : z.string({ required_error: "A unidade federativa é obrigatória" }),
         
     }),
