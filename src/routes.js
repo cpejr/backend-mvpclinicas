@@ -15,11 +15,12 @@ rotas.get("/usuarios", UsuarioController.read);
 rotas.get("/usuarios/:id", UsuarioController.readById);
 rotas.put(
   "/usuarios/:id",
-  verificarJwt,
-  verificarUsuario,
+ // verificarJwt,
+ // verificarUsuario,
   UsuarioValidator.update,
   UsuarioController.update
 );
+rotas.put("/usuarios/alterar_senha/:id", UsuarioValidator.updateSenha, UsuarioController.updateSenha);
 rotas.delete(
   "/usuarios/:id",
   UsuarioValidator.destroy,
