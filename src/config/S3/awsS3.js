@@ -34,7 +34,7 @@ async function uploadFile({ file, ACL }) {
     Body: JSON.stringify({ imagem: file }),
     Key: key,
     ContentType: "json",
-    ACL,
+    //ACL,
   };
 
   await s3.send(new PutObjectCommand(params));

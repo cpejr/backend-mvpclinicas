@@ -21,11 +21,11 @@ class UsuarioController {
     if (!id) return; // Tratar esse caso com validator
 
     const usuario = await UsuarioModel.findOne({ email: "lucas@cpe.com" }); // Interessante utilizar o .exec() depois de qualquer find
-    // if (usuario.avatar_url) {
-    //   const chave = usuario.avatar_url;
-    //   await deleteFile(chave); // Pode ser colocado em um middleware
-    //   //PROBLEMA: para a exlusão de arquivos o acesso está proibido. Checar permissões do usuário
-    // }
+    if (usuario.avatar_url) {
+      const chave = usuario.avatar_url;
+      await deleteFile(chave); // Pode ser colocado em um middleware
+      //   //PROBLEMA: para a exlusão de arquivos o acesso está proibido. Checar permissões do usuário
+    }
 
     const file = req.body.file;
     const { key } = await uploadFile({
