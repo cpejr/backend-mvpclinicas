@@ -20,7 +20,7 @@ rotas.put(
   UsuarioValidator.update,
   UsuarioController.update
 );
-rotas.put("/usuarios/alterar_senha/:id",verificarJwt, verificarUsuario, UsuarioValidator.updateSenha, UsuarioController.updateSenha);
+rotas.put("/usuarios/alterar_senha/:id", UsuarioValidator.updateSenha, UsuarioController.updateSenha);
 rotas.delete(
   "/usuarios/:id",
   UsuarioValidator.destroy,
