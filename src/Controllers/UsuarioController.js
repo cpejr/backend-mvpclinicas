@@ -33,7 +33,6 @@ class UsuarioController {
       ACL: "public-read	",
     }); // Consultor PO sobre acesso dos arquivos
     const url = `https://${process.env.AWS_BUCKET_NAME}.s3.amazonaws.com/${key}`; // Pode testar algo assim caso o acesso do arquivo seja público
-    console.log(url);
     usuario.set({ avatar_url: key }); // O upload file não retorna uma url
     await usuario.save();
 
