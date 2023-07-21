@@ -28,12 +28,12 @@ async function getFile(key) {
 }
 
 async function uploadFile({ file, ACL }) {
-  const key = randomFileName(file.originalname);
+  const key = randomFileName("") + ".json";
   const params = {
     Bucket: process.env.AWS_BUCKET_NAME,
-    Body: file.buffer,
+    Body: JSON.stringify({ imagem: file }),
     Key: key,
-    ContentType: file.mimetype,
+    ContentType: "json",
     ACL,
   };
 
