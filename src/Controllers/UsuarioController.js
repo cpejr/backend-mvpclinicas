@@ -42,29 +42,36 @@ class UsuarioController {
   }
   async updateSenha(req, res) {
     const { id } = req.params;
-    const { senhaAtual, novaSenha } = req.body;
+    const { senhaAtual, novaSenha, confirmacaoSenha } = req.body;
     
     try {
-      const usuario = await UsuarioModel.findById(id);
+     
+      const usuario = await UsuarioModel.findById(id).select("+senha");
+      
       // Verifica se a senha atual digitada corresponde à senha armazenada no banco de dados
       const senhaCorreta = await bcrypt.compare(senhaAtual, usuario.senha);
-      console.log(senhaAtual);
-      console.log(usuario.senha);
+      console.log("senhaAtual:"+senhaAtual);
+      console.log("senha criptografada:"+usuario.senha);
+     
+
       if (!senhaCorreta) {
         return res.status(400).json({ message: "Senha atual incorreta" });
       }
       // Gera o hash da nova senha
-      const novoHashSenha = await bcrypt.hash(novaSenha, 10);
-
+      const salt = await bcrypt.genSalt(10);
+      //const novoHashSenha = await bcrypt.hash(novaSenha, salt);
+    
       // Atualiza a senha do usuário no banco de dados
-      usuario.senha = novoHashSenha;
+      //usuario.senha = novoHashSenha;
+      usuario.senha = novaSenha;
       await usuario.save();
-     
+      console.log("senha modificada");
       return res.status(200).json(usuario);
     } catch (error) {
       res.status(500).json({ message: "Erro!!", error: error.message });
     }
   }
+  
   async destroy(req, res) {
     const { id } = req.params;
 
