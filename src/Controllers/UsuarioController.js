@@ -1,5 +1,10 @@
 const UsuarioModel = require("../Models/UsuarioModel");
-const { deleteFile, uploadFile } = require("../config/S3/awsS3");
+const {
+  deleteFile,
+  uploadFile,
+  apagarArquivo,
+  enviarArquivo,
+} = require("../config/S3/awsS3");
 
 class UsuarioController {
   async read(req, res) {
@@ -20,18 +25,18 @@ class UsuarioController {
     const { id } = req.params;
     if (!id) return; // Tratar esse caso com validator
 
-    const usuario = await UsuarioModel.findOne({ _id: id }); // Interessante utilizar o .exec() depois de qualquer find
+    const usuario = await UsuarioModel.findOne({ _id: id });
     if (usuario.avatar_url) {
       const chave = usuario.avatar_url;
-      await deleteFile(chave); // Pode ser colocado em um middleware
+      await apagarArquivo(chave);
     }
 
     const file = req.body.file;
-    const { key } = await uploadFile({
+    const { key } = await enviarArquivo({
       file,
       ACL: "public-read	",
-    }); // Consultor PO sobre acesso dos arquivos
-    const url = `https://${process.env.AWS_BUCKET_NAME}.s3.amazonaws.com/${key}`; // Pode testar algo assim caso o acesso do arquivo seja público
+    });
+    //const url = `https://${process.env.AWS_BUCKET_NAME}.s3.amazonaws.com/${key}`;
     usuario.set({ avatar_url: key }); // O upload file não retorna uma url
     await usuario.save();
 

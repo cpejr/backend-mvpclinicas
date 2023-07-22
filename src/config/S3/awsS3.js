@@ -18,7 +18,7 @@ const s3 = new S3Client({
   },
 });
 
-async function getFile(key) {
+async function pegarAquivo(key) {
   const params = {
     Bucket: process.env.AWS_BUCKET_NAME,
     Key: key,
@@ -27,7 +27,7 @@ async function getFile(key) {
   return s3.send(new GetObjectCommand(params));
 }
 
-async function uploadFile({ file, ACL }) {
+async function enviarArquivo({ file, ACL }) {
   const key = randomFileName("") + ".json";
   const params = {
     Bucket: process.env.AWS_BUCKET_NAME,
@@ -41,11 +41,11 @@ async function uploadFile({ file, ACL }) {
   return { key, ...file };
 }
 
-async function uploadFiles({ files, ACL }) {
-  return Promise.all(files.map(async (file) => uploadFile({ file, ACL })));
+async function enviarArquivos({ files, ACL }) {
+  return Promise.all(files.map(async (file) => enviarArquivo({ file, ACL })));
 }
 
-async function deleteFile(key) {
+async function apagarArquivo(key) {
   if (!key) return;
 
   const params = {
@@ -56,7 +56,7 @@ async function deleteFile(key) {
   await s3.send(new DeleteObjectCommand(params));
 }
 
-async function deleteFiles(keys) {
+async function apagarArquivos(keys) {
   if (!keys.length) return;
 
   const objects = keys.map((key) => ({
@@ -101,11 +101,11 @@ async function configCors({
 }
 
 module.exports = {
-  getFile,
-  uploadFile,
-  uploadFiles,
-  deleteFile,
-  deleteFiles,
+  pegarAquivo,
+  enviarArquivo,
+  enviarArquivos,
+  apagarArquivo,
+  apagarArquivos,
   getCors,
   configCors,
   s3,
