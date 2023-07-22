@@ -47,20 +47,13 @@ class UsuarioController {
 
     try {
     
-      // Verifica se a senha atual digitada corresponde à senha armazenada no banco de dados
       const senhaCorreta = await bcrypt.compare(senhaAtual, usuario.senha);
-      console.log("senhaAtual:"+senhaAtual);
-      console.log("senha criptografada:"+usuario.senha);
+      
       if (!senhaCorreta) {
-        console.log("Senha atual incorreta");
+        
         return res.status(400).json({ message: "Senha atual incorreta" });
       }
-      // Gera o hash da nova senha
-      //const salt = await bcrypt.genSalt(10);
-    //const novoHashSenha = await bcrypt.hash(novaSenha, salt);
     
-      // Atualiza a senha do usuário no banco de dados
-     // usuario.senha = novoHashSenha;
       usuario.senha = senha;
       await usuario.save();
      
