@@ -8,6 +8,7 @@ const rotas = Router();
 
 rotas.get("/locais", LocalController.read);
 rotas.get("/locais/:id_local", LocalController.readById);
+rotas.delete("/locais/:id_local", LocalController.destroy);
 
 rotas.get("/usuarios", UsuarioController.read);
 rotas.get("/usuarios/:id", UsuarioController.readById);
