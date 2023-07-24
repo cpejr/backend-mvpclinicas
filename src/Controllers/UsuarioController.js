@@ -4,6 +4,7 @@ const {
   uploadFile,
   apagarArquivo,
   enviarArquivo,
+  pegarAquivo,
 } = require("../config/S3/awsS3");
 
 class UsuarioController {
@@ -41,6 +42,15 @@ class UsuarioController {
     await usuario.save();
 
     return res.status(200).json(usuario);
+  }
+
+  async pegarImagem(req, res) {
+    const { id } = req.params;
+
+    const usuario = await UsuarioModel.findOne({ _id: id });
+    const resultado = await pegarAquivo(usuario.avatar_url);
+    const imagem = JSON.parse(resultado);
+    return res.status(200).json(imagem);
   }
 }
 

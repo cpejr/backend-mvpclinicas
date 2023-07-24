@@ -17,6 +17,7 @@ const s3 = new S3Client({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
 });
+const Readable = require("stream").Readable;
 
 async function pegarAquivo(key) {
   const params = {
@@ -24,9 +25,30 @@ async function pegarAquivo(key) {
     Key: key,
   };
 
-  return s3.send(new GetObjectCommand(params));
+  const res = await s3.send(new GetObjectCommand(params));
+  const stream = res.Body;
+  return new Promise((resolve, reject) => {
+    const chunks = [];
+    stream.on("data", (chunk) => chunks.push(chunk));
+    stream.once("end", () => resolve(Buffer.concat(chunks)));
+    stream.once("error", reject);
+  });
 }
-
+// async function pegarAquivo(key) {
+//   const _s3 = new s3({
+//     region: process.env.AWS_REGION,
+//     credentials: {
+//       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+//       secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+//     },
+//   });
+//   const resp = await s3.getObject({
+//     Bucket: process.env.AWS_BUCKET_NAME,
+//     Key: key,
+//   });
+//   console.info(await new Response(resp.Body, {}).text());
+//   return 1;
+// }
 async function enviarArquivo({ file, ACL }) {
   const key = randomFileName("") + ".json";
   const params = {
