@@ -48,7 +48,10 @@ class UsuarioController {
     const { id } = req.params;
 
     const usuario = await UsuarioModel.findOne({ _id: id });
-    const resultado = await pegarAquivo(usuario.avatar_url);
+
+    let resultado;
+    if (!usuario.avatar_url) resultado = await pegarAquivo("defaultPfp.json");
+    else resultado = await pegarAquivo(usuario.avatar_url);
     const imagem = JSON.parse(resultado);
     return res.status(200).json(imagem);
   }
