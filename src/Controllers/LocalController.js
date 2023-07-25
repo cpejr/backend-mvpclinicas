@@ -1,5 +1,5 @@
 const LocalModel = require("../Models/LocalModel");
-
+const ComentarioModel = require("../Models/ComentarioModel");
 class LocalController {
   async read(req, res) {
     const locais = await LocalModel.find();
@@ -18,7 +18,8 @@ class LocalController {
   async destroy(req, res) {
     const { id_local } = req.params;
 
-    const localDeletado = await LocalModel.findByIdAndDelete(id_local);
+    const comentarios = await ComentarioModel.deleteMany({ id_local });
+    const localDeletado = await LocalModel.deleteOne({ _id: id_local });
 
     if (!localDeletado)
       return res.status(404).json({ message: "Local não encontrado" });
