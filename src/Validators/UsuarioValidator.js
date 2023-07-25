@@ -42,7 +42,6 @@ const updateSenha = validateRequest({
   body: z.object({
     senhaAtual: z.string({ required_error: "A senha atual é obrigatória" }),
     senha: z.string({ required_error: "A nova senha é obrigatória" }),
-    confirmaNovaSenha: z.string({ required_error: "A confirmação senha é obrigatória" }),
   }),
   params: z.object({
     id: z.custom(mongoose.isValidObjectId, "O id não é válido"),

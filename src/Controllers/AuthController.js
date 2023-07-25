@@ -10,12 +10,9 @@ class AuthController {
    const usuarioEncontrado = await UsuarioModel.findOne({ email }).select(
     "+senha"
    );
-   if(!usuarioEncontrado)
+   const ehCorrespondente = await bcrypt.compare(senha, usuarioEncontrado.senha);
+   if(!usuarioEncontrado || !ehCorrespondente)
      return res.status(403).json({message: "E-mail ou senha inválidos"});
-     
-     const ehCorrespondente = await bcrypt.compare(senha, usuarioEncontrado.senha);
-     if(!ehCorrespondente)
-      return res.status(403).json({message: "E-mail ou senha inválidos"});
     
       const {senha: hashedSenha, ...usuario } = usuarioEncontrado.toObject()
 

@@ -1,4 +1,4 @@
-//const { hash } = require("bcrypt");
+
 const bcrypt = require("bcrypt");
 const UsuarioModel = require("../Models/UsuarioModel");
 
