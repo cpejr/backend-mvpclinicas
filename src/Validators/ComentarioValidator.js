@@ -36,4 +36,11 @@ const create = validateRequest({
   })
 });
 
-module.exports = { create };
+const destroy = validateRequest({
+  params: z.object({
+    id_comentario: z.custom(mongoose.isValidObjectId, "O id do comentario não é válido"),
+  }),
+});
+
+
+module.exports = { create , destroy};

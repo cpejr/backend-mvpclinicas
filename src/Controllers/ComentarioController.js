@@ -42,6 +42,30 @@ class ComentarioController {
 
     return res.status(201).json({ comentario });
   }
+
+  async readByUsuario(req, res){
+    const {id_usuario}= req.params;
+
+
+    const comentarios = await ComentarioModel.find({
+      id_usuario: id_usuario,
+    }).populate("id_usuario", "nome");
+
+
+    return res.status(200).json({ comentarios});
+  }
+
+  async destroy(req, res) {
+    const { id_comentario } = req.params;
+
+    const comentario = await ComentarioModel.findByIdAndDelete(id_comentario);
+
+    if (!comentario)
+      return res.status(404).json({ message: "Comentario não encontrado" });
+
+    return res.status(200).json(comentario);
+  }
+
 }
 
 module.exports = new ComentarioController();

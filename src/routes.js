@@ -16,10 +16,20 @@ rotas.get("/locais", LocalController.read);
 rotas.get("/locais/:id_local", LocalController.readById);
 
 rotas.get("/comentarios/:id_local", ComentarioController.readByLocal);
+rotas.get("/comentarios/usuario/:id_usuario", ComentarioController.readByUsuario);
+
 rotas.post(
   "/comentarios/:id_local",
   ComentarioValidator.create,
   ComentarioController.create
 );
+
+rotas.delete(
+  "/comentarios/:id_comentario",
+  ComentarioValidator.destroy, 
+  ComentarioController.destroy
+);
+
+
 
 module.exports = rotas;
