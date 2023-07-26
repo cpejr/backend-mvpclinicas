@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const Schema = mongoose.Schema;
 
@@ -10,6 +11,7 @@ const UsuarioSchema = new Schema({
   telefone: {
     type: String,
     required: true,
+    unique: true,
   },
   data_nascimento: {
     type: Date,
@@ -18,21 +20,21 @@ const UsuarioSchema = new Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   senha: {
     type: String,
     required: true,
+    select: false,
   },
   avatar_url: {
     type: String,
+    required: false,
   },
-  registro: {
+  crm: {
     type: String,
     required: true,
-  },
-  formacao: {
-    type: String,
-    required: true,
+    unique: true,
   },
   uni_federativa: {
     type: String,
@@ -43,6 +45,27 @@ const UsuarioSchema = new Schema({
     required: true,
     default: false,
   },
+  registro: {
+    type: String,
+    required: true,
+  },
+  formacao: {
+    required: true,
+    type: String,
+  },
+});
+
+UsuarioSchema.pre("save", async function (next) {
+  const user = this;
+
+  if (user.isModified("senha")) {
+    const salt = await bcrypt.genSalt();
+    const hash = await bcrypt.hash(user.senha, salt);
+
+    user.senha = hash;
+  }
+
+  next();
 });
 
 const UsuarioModel = mongoose.model("usuarios", UsuarioSchema);
