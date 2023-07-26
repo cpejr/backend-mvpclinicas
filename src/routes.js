@@ -1,40 +1,27 @@
 const { Router } = require("express");
+
 const LocalController = require("./Controllers/LocalController");
 const AuthController = require("./Controllers/AuthController");
-const AuthValidator = require("./Validators/AuthValidator");
-const verificarJwt = require ("./Middlewares/verificarJwt");
+const ComentarioController = require("./Controllers/ComentarioController");
+const UsuarioController = require("./Controllers/UsuarioController");
+
+const verificarJwt = require("./Middlewares/verificarJwt");
 const verificarUsuario = require("./Middlewares/verificarUsuario");
-const ComentarioController = require("./Controllers/ComentarioController");
-const UsuarioController = require("./Controllers/UsuarioController");
-const UsuarioValidator = require("./Validators/UsuarioValidator");
 
-const LocalController = require("./Controllers/LocalController");
-const ComentarioController = require("./Controllers/ComentarioController");
-const UsuarioController = require("./Controllers/UsuarioController");
-const rotas = Router();
-
-rotas.post('/usuarios', UsuarioValidator.create, UsuarioController.create);
-rotas.get('/usuarios',verificarJwt, UsuarioController.read);
-
+const AuthValidator = require("./Validators/AuthValidator");
 const UsuarioValidator = require("./Validators/UsuarioValidator");
 const ComentarioValidator = require("./Validators/ComentarioValidator");
 
 const rotas = Router();
 
+rotas.post("/usuarios", UsuarioValidator.create, UsuarioController.create);
+rotas.get("/usuarios", verificarJwt, UsuarioController.read);
+rotas.get("/usuarios/:id", UsuarioController.readById);
+
 rotas.get("/locais", LocalController.read);
 rotas.get("/locais/:id_local", LocalController.readById);
-rotas.get('/locais', LocalController.read);
-rotas.get('/locais/:id_local', LocalController.readById);
 
-rotas.get("/usuarios", UsuarioController.read);
-rotas.get("/usuarios/:id", UsuarioController.readById);
-rotas.post("/usuarios", UsuarioValidator.create, UsuarioController.create);
-rotas.get("/usuarios", UsuarioController.read);
-rotas.get("/usuarios/:id", UsuarioController.readById);
-rotas.post('/login', AuthValidator.login, AuthController.login);
-
-rotas.get('/usuarios', UsuarioController.read);
-rotas.get('/usuarios/:id', UsuarioController.readById);
+rotas.post("/login", AuthValidator.login, AuthController.login);
 
 rotas.get("/comentarios/:id_local", ComentarioController.readByLocal);
 rotas.get(
@@ -51,7 +38,5 @@ rotas.delete(
   ComentarioValidator.destroy,
   ComentarioController.destroy
 );
-
-rotas.get('/comentarios/:id_local', ComentarioController.readByLocal);
 
 module.exports = rotas;
