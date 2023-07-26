@@ -43,16 +43,14 @@ class ComentarioController {
     return res.status(201).json({ comentario });
   }
 
-  async readByUsuario(req, res){
-    const {id_usuario}= req.params;
-
+  async readByUsuario(req, res) {
+    const { id_usuario } = req.params;
 
     const comentarios = await ComentarioModel.find({
       id_usuario: id_usuario,
     }).populate("id_usuario", "nome");
 
-
-    return res.status(200).json({ comentarios});
+    return res.status(200).json({ comentarios });
   }
 
   async destroy(req, res) {
@@ -65,7 +63,6 @@ class ComentarioController {
 
     return res.status(200).json(comentario);
   }
-
 }
 
 module.exports = new ComentarioController();

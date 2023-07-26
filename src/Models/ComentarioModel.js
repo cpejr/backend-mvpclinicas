@@ -20,7 +20,7 @@ const ComentarioSchema = new Schema({
   avaliacao: {
     type: String,
     required: true,
-  }
+  },
 });
 
 const ComentarioModel = mongoose.model("comentarios", ComentarioSchema);
