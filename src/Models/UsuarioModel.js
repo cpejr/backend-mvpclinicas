@@ -25,9 +25,12 @@ const UsuarioSchema = new Schema({
   },
   avatar_url: {
     type: String,
+  },
+  registro: {
+    type: String,
     required: true,
   },
-  crm: {
+  formacao: {
     type: String,
     required: true,
   },
@@ -38,7 +41,7 @@ const UsuarioSchema = new Schema({
   admin: {
     type: Boolean,
     required: true,
-    default: false
+    default: false,
   },
 });
 
