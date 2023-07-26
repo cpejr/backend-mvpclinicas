@@ -46,21 +46,4 @@ rotas.get("/comentarios/:id_local", ComentarioController.readByLocal);
 rotas.post("/comentarios/:id_local",ComentarioValidator.create, ComentarioController.create);
 rotas.get("/comentarios/:id_local", ComentarioController.readByLocal);
 
-rotas.get("/:id_usuario/admin", async (req, res) => {
-    const { id_usuario } = req.params;
-  
-    try {
-      const usuario = await UsuarioModel.findById(id_usuario);
-      if (!usuario) {
-        return res.status(404).json({ message: "Usuário não encontrado." });
-      }
-  
-      const ehAdmin = usuario.admin;
-      res.json({ ehAdmin });
-    } catch (err) {
-      console.error("Erro ao verificar permissão do usuário:", err);
-      res.status(500).json({ message: "Erro ao verificar permissão do usuário." });
-    }
-});
-
 module.exports = rotas;
