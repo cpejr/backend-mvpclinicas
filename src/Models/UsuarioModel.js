@@ -60,6 +60,13 @@ const UsuarioModel = mongoose.model('/usuarios', UsuarioSchema);
   }
 
 next()
+  registro: {
+    type: String,
+    required: true,
+  },
+  formacao: {
+    required: true,
+    type: String,
 });
 
 const UsuarioModel = mongoose.model('usuarios', UsuarioSchema);
