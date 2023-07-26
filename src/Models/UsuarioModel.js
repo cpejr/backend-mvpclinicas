@@ -30,20 +30,18 @@ const UsuarioSchema = new Schema({
     type: String,
     required: true,
   },
-
   formacao: {
     type: String,
     required: true,
   },
-  
   uni_federativa: {
     type: String,
     required: true,
   },
-    admin: {
+  admin: {
     type: Boolean,
     required: true,
-    default: false
+    default: false,
   },
 });
 

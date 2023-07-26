@@ -6,16 +6,13 @@ const UsuarioValidator = require("./Validators/UsuarioValidator");
 
 const rotas = Router();
 
-rotas.get('/locais', LocalController.read);
-rotas.get('/locais/:id_local', LocalController.readById);
+rotas.get("/locais", LocalController.read);
+rotas.get("/locais/:id_local", LocalController.readById);
 
-rotas.get('/usuarios', UsuarioController.read);
-rotas.get('/usuarios/:id', UsuarioController.readById);
-rotas.post('/usuarios', UsuarioValidator.create, UsuarioController.create);
+rotas.get("/usuarios", UsuarioController.read);
+rotas.get("/usuarios/:id", UsuarioController.readById);
+rotas.post("/usuarios", UsuarioValidator.create, UsuarioController.create);
 
-rotas.get('/locais', LocalController.read);
-rotas.get('/locais/:id_local', LocalController.readById);
-
-rotas.get('/comentarios/:id_local', ComentarioController.readByLocal);
+rotas.get("/comentarios/:id_local", ComentarioController.readByLocal);
 
 module.exports = rotas;
