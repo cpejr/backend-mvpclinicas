@@ -18,8 +18,12 @@ class LocalController {
   async destroy(req, res) {
     const { id_local } = req.params;
 
-    const comentarios = await ComentarioModel.deleteMany({ id_local });
-    const localDeletado = await LocalModel.deleteOne({ _id: id_local });
+    const comentarios = await ComentarioModel.find({ id_local });
+    //a função deleteMany modifica a resposta do servidor. Essa solução, não
+    comentarios.forEach(async (comentario) => {
+      await ComentarioModel.deleteOne({ _id: comentario._id });
+    });
+    const localDeletado = await LocalModel.findByIdAndDelete(id_local);
 
     if (!localDeletado)
       return res.status(404).json({ message: "Local não encontrado" });
