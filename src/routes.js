@@ -16,7 +16,7 @@ const ComentarioValidator = require("./Validators/ComentarioValidator");
 const rotas = Router();
 
 rotas.post("/usuarios", UsuarioValidator.create, UsuarioController.create);
-rotas.get("/usuarios", verificarJwt, UsuarioController.read);
+rotas.get("/usuarios", UsuarioController.read);
 rotas.get("/usuarios/:id", UsuarioController.readById);
 
 rotas.post("/locais", LocalValidator.create, LocalController.create);
