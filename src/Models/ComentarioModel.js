@@ -14,13 +14,13 @@ const ComentarioSchema = new Schema({
     required: true,
   },
   comentario: {
-    type: String,
+    type: Object,
     required: true,
   },
   avaliacao: {
     type: String,
     required: true,
-  }
+  },
 });
 
 const ComentarioModel = mongoose.model("comentarios", ComentarioSchema);
