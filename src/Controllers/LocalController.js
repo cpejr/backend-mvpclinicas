@@ -36,14 +36,24 @@ class LocalController {
     }
   }
 
-    async create(req, res) {
-        try {
-            const novoLocal = await LocalModel.create(req.body);
-            return res.status(200).json({ message: 'Novo local cadastrado com sucesso!', novoLocal });
-        } catch (error) {
-            res.status(500).json({ message: "Erro!!", error: error.message });
-        }
+  async readById(req, res) {
+    const { id } = req.params;
+
+    const usuario = await UsuarioModel.findById(id);
+
+    return res.status(200).json(usuario);
+  }
+
+  async create(req, res) {
+    try {
+      const novoLocal = await LocalModel.create(req.body);
+      return res
+        .status(200)
+        .json({ message: "Novo local cadastrado com sucesso!", novoLocal });
+    } catch (error) {
+      res.status(500).json({ message: "Erro!!", error: error.message });
     }
+  }
 }
 
 module.exports = new LocalController();
