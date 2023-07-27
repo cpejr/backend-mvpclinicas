@@ -22,6 +22,16 @@ rotas.get("/locais", LocalController.read);
 rotas.get("/locais/:id_local", LocalController.readById);
 
 rotas.post("/login", AuthValidator.login, AuthController.login);
+rotas.put(
+  "/usuariosimagem/:id",
+  UsuarioValidator.updateImagem,
+  UsuarioController.updateImagem
+);
+rotas.get(
+  "/usuariosimagem/:id",
+  //UsuarioValidator.pegarImagem,
+  UsuarioController.pegarImagem
+);
 
 rotas.get("/comentarios/:id_local", ComentarioController.readByLocal);
 rotas.get(
@@ -38,5 +48,7 @@ rotas.delete(
   ComentarioValidator.destroy,
   ComentarioController.destroy
 );
+
+rotas.get("/comentarios/:id_local", ComentarioController.readByLocal);
 
 module.exports = rotas;
