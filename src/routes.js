@@ -4,6 +4,7 @@ const LocalController = require("./Controllers/LocalController");
 const AuthController = require("./Controllers/AuthController");
 const ComentarioController = require("./Controllers/ComentarioController");
 const UsuarioController = require("./Controllers/UsuarioController");
+const LocalValidator = require("./Validators/LocalValidator");
 
 const verificarJwt = require("./Middlewares/verificarJwt");
 const verificarUsuario = require("./Middlewares/verificarUsuario");
@@ -18,10 +19,12 @@ rotas.post("/usuarios", UsuarioValidator.create, UsuarioController.create);
 rotas.get("/usuarios", verificarJwt, UsuarioController.read);
 rotas.get("/usuarios/:id", UsuarioController.readById);
 
+rotas.post("/locais", LocalValidator.create, LocalController.create);
 rotas.get("/locais", LocalController.read);
 rotas.get("/locais/:id_local", LocalController.readById);
 
 rotas.post("/login", AuthValidator.login, AuthController.login);
+
 rotas.put(
   "/usuariosimagem/:id",
   UsuarioValidator.updateImagem,
@@ -48,7 +51,5 @@ rotas.delete(
   ComentarioValidator.destroy,
   ComentarioController.destroy
 );
-
-rotas.get("/comentarios/:id_local", ComentarioController.readByLocal);
 
 module.exports = rotas;
