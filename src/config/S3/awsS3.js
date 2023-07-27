@@ -112,7 +112,7 @@ async function configCors({
     AllowedOrigins: allowedOrigins,
     ExposeHeaders: exposeHeaders,
     MaxAgeSeconds: maxAgeSeconds,
-  };
+  };F
 
   const corsParams = {
     Bucket: process.env.AWS_BUCKET_NAME,

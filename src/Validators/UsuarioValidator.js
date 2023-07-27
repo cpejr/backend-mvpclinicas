@@ -13,9 +13,6 @@ const getImagem = validateRequest({
   }),
 });
 
-  updateImagem,
-  getImagem,
-
 const create = validateRequest({
   body: z.object({
     nome: z.string({ required_error: "O nome é obrigatório" }),
@@ -41,4 +38,6 @@ const create = validateRequest({
 
 module.exports = {
   create,
+  updateImagem,
+  getImagem,
 };
