@@ -1,7 +1,9 @@
+const dotenv = require("dotenv")
 const app = require("./App");
 const Loaders = require("./Loaders/index");
 const cors_proxy = require('cors-anywhere');
 
+dotenv.config();
 Loaders.start();
 
 cors_proxy.createServer({
