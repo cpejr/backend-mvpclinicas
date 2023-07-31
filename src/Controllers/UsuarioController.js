@@ -51,7 +51,13 @@ class UsuarioController {
 
     let resultado;
     if (!usuario.avatar_url) resultado = await pegarAquivo("defaultPfp.json");
-    else resultado = await pegarAquivo(usuario.avatar_url);
+    else {
+      try {
+        resultado = await pegarAquivo(usuario.avatar_url);
+      } catch (error) {
+        resultado = await pegarAquivo("defaultPfp.json");
+      }
+    }
     const imagem = JSON.parse(resultado);
     return res.status(200).json(imagem);
   }
