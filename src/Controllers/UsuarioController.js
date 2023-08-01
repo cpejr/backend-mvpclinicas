@@ -14,11 +14,12 @@ class UsuarioController {
     } catch (error) {
       res.status(500).json({ message: "Erro!!", error: error.message });
     }
-    async read(req, res) {
-        const usuarios = await UsuarioModel.find();
+  }
+  async read(req, res) {
+    const usuarios = await UsuarioModel.find();
 
-        return res.status(200).json(usuarios);
-    }
+    return res.status(200).json(usuarios);
+  }
 
   async readById(req, res) {
     const { id } = req.params;
@@ -39,27 +40,25 @@ class UsuarioController {
   }
   async updateSenha(req, res) {
     const { id } = req.params;
-    const { senhaAtual, senha} = req.body;
+    const { senhaAtual, senha } = req.body;
     const usuario = await UsuarioModel.findById(id).select("+senha");
 
     try {
-    
       const senhaCorreta = await bcrypt.compare(senhaAtual, usuario.senha);
-      
+
       if (!senhaCorreta) {
-        
         return res.status(400).json({ message: "Senha atual incorreta" });
       }
-    
+
       usuario.senha = senha;
       await usuario.save();
-     
+
       return res.status(200).json(usuario);
     } catch (error) {
       res.status(500).json({ message: "Erro!!", error: error.message });
     }
   }
-  
+
   async destroy(req, res) {
     const { id } = req.params;
 
