@@ -1,8 +1,6 @@
 const { z } = require("zod");
 const { validateRequest } = require("zod-express-middleware");
 const { default: mongoose } = require("mongoose");
-const { z } = require("zod");
-const { validateRequest } = require("zod-express-middleware");
 
 const updateImagem = validateRequest({
   params: z.object({
@@ -14,11 +12,6 @@ const getImagem = validateRequest({
     id: z.custom(mongoose.isValidObjectId, "O ID não é válido"), //se o id não for válido, ele manda a mensagem.
   }),
 });
-
-module.exports = {
-  updateImagem,
-  getImagem,
-};
 
 const create = validateRequest({
   body: z.object({
@@ -44,5 +37,7 @@ const create = validateRequest({
 });
 
 module.exports = {
+  updateImagem,
+  getImagem,
   create,
 };

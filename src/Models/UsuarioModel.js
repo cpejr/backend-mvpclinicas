@@ -45,14 +45,14 @@ const UsuarioSchema = new Schema({
     required: true,
     default: false,
   },
-  registro: {
-    type: String,
-    required: true,
-  },
-  formacao: {
-    required: true,
-    type: String,
-  },
+  // registro: {
+  //   type: String,
+  //   required: true,
+  // },
+  // formacao: {
+  //   required: true,
+  //   type: String,
+  // },
 });
 
 UsuarioSchema.pre("save", async function (next) {
