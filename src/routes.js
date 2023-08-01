@@ -1,4 +1,5 @@
 const { Router } = require("express");
+
 const LocalController = require("./Controllers/LocalController");
 const AuthController = require("./Controllers/AuthController");
 const AuthValidator = require("./Validators/AuthValidator");
@@ -13,12 +14,7 @@ const UsuarioModel = require("./Models/UsuarioModel");
 
 const rotas = Router();
 
-rotas.get("/locais", LocalController.read);
-rotas.get("/locais/:id_local", LocalController.readById);
 rotas.delete("/locais/:id_local", LocalController.destroy, LocalValidator.destroy, LocalValidator.ConfereAdmin);
-rotas.post("/usuarios", UsuarioValidator.create, UsuarioController.create);
-rotas.get("/usuarios", UsuarioController.read);
-rotas.get("/usuarios/:id", UsuarioController.readById);
 rotas.put(
   "/usuarios/:id",
   verificarJwt,
@@ -32,8 +28,8 @@ rotas.delete(
   UsuarioValidator.destroy,
   UsuarioController.destroy
 );
-
-rotas.get("/usuarios", UsuarioController.read);
+rotas.post("/usuarios", UsuarioValidator.create, UsuarioController.create);
+rotas.get("/usuarios", verificarJwt, UsuarioController.read);
 rotas.get("/usuarios/:id", UsuarioController.readById);
 rotas.get("/locais", LocalController.read);
 rotas.get("/locais/:id_local", LocalController.readById);
@@ -42,8 +38,22 @@ rotas.get("/locais", LocalController.read);
 rotas.get("/locais/:id_local", LocalController.readById);
 rotas.post("/login", AuthValidator.login, AuthController.login);
 
+rotas.post("/login", AuthValidator.login, AuthController.login);
+
 rotas.get("/comentarios/:id_local", ComentarioController.readByLocal);
-rotas.post("/comentarios/:id_local",ComentarioValidator.create, ComentarioController.create);
-rotas.get("/comentarios/:id_local", ComentarioController.readByLocal);
+rotas.get(
+  "/comentarios/usuario/:id_usuario",
+  ComentarioController.readByUsuario
+);
+rotas.post(
+  "/comentarios/:id_local",
+  ComentarioValidator.create,
+  ComentarioController.create
+);
+rotas.delete(
+  "/comentarios/:id_comentario",
+  ComentarioValidator.destroy,
+  ComentarioController.destroy
+);
 
 module.exports = rotas;

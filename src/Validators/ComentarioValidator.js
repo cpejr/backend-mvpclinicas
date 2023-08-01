@@ -29,11 +29,17 @@ const create = validateRequest({
     avaliacao: z.string({ required_error: "A avaliação é obrigatória" }),
   }),
   params: z.object({
-    id_local: z.custom(
-      mongoose.isValidObjectId,
-      "O id do local é invalido"
-    )
-  })
+    id_local: z.custom(mongoose.isValidObjectId, "O id do local é invalido"),
+  }),
 });
 
-module.exports = { create };
+const destroy = validateRequest({
+  params: z.object({
+    id_comentario: z.custom(
+      mongoose.isValidObjectId,
+      "O id do comentario não é válido"
+    ),
+  }),
+});
+
+module.exports = { create, destroy };
