@@ -1,5 +1,6 @@
 const LocalModel = require("../Models/LocalModel");
 const ComentarioModel = require("../Models/ComentarioModel");
+const UsuarioModel = require("../Models/UsuarioModel");
 
 class LocalController {
   async read(req, res) {
@@ -37,12 +38,13 @@ class LocalController {
   }
 
   async readById(req, res) {
-    const { id } = req.params;
+    const { id_local } = req.params;
 
-    const usuario = await UsuarioModel.findById(id);
+    const local = await LocalModel.findById(id_local);
 
-    return res.status(200).json(usuario);
+    return res.status(200).json(local);
   }
+
 
   async create(req, res) {
     try {
