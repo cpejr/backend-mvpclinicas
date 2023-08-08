@@ -17,7 +17,7 @@ const rotas = Router();
 
 rotas.post("/usuarios", UsuarioValidator.create, UsuarioController.create);
 rotas.get("/usuarios", verificarJwt, UsuarioController.read);
-rotas.get("/usuarios/:id", verificarJwt, UsuarioController.readById);
+rotas.get("/usuarios/:id", UsuarioController.readById);
 
 rotas.post("/locais", verificarJwt, LocalValidator.create, LocalController.create);
 rotas.get("/locais", verificarJwt, LocalController.read);
