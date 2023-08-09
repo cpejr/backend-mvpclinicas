@@ -31,11 +31,6 @@ const UsuarioSchema = new Schema({
     type: String,
     required: false,
   },
-  crm: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   uni_federativa: {
     type: String,
     required: true,
