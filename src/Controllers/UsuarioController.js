@@ -3,9 +3,11 @@ const bcrypt = require("bcrypt");
 const UsuarioModel = require("../Models/UsuarioModel");
 
 class UsuarioController {
+  async create(req, res) {
+    try {
+      const usuarios = await UsuarioModel.create(req.body);
 
-    async create(req, res) {
-        try {
+      const { senha, ...novoUsuario } = usuarios.toObject();
 
             const usuarios = await UsuarioModel.create(req.body);
             
@@ -71,5 +73,4 @@ class UsuarioController {
     return res.status(200).json(usuario);
   }
 }
-
 module.exports = new UsuarioController();
