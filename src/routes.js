@@ -24,12 +24,12 @@ rotas.put(
   UsuarioValidator.update,
   UsuarioController.update
 );
-rotas.put("/usuarios/alterar_senha/:id", UsuarioValidator.updateSenha, UsuarioController.updateSenha);
-rotas.delete(
-  UsuarioValidator.destroy,
-  "/usuarios/:id",
-  UsuarioController.destroy
+rotas.put(
+  "/usuarios/alterar_senha/:id",
+  UsuarioValidator.updateSenha,
+  UsuarioController.updateSenha
 );
+rotas.delete("/usuarios/:id", UsuarioController.destroy);
 
 rotas.get("/locais", LocalController.read);
 rotas.get("/locais/:id_local", LocalController.readById);
