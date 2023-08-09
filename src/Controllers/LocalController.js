@@ -47,7 +47,6 @@ class LocalController {
     const { id_local } = req.params;
 
     const comentarios = await ComentarioModel.find({ id_local });
-    //a função deleteMany modifica a resposta do servidor. Essa solução, não
     comentarios.forEach(async (comentario) => {
       await ComentarioModel.deleteOne({ _id: comentario._id });
     });
