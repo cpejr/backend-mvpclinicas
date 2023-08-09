@@ -31,11 +31,6 @@ const UsuarioSchema = new Schema({
     type: String,
     required: false,
   },
-  crm: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   uni_federativa: {
     type: String,
     required: true,
@@ -45,14 +40,14 @@ const UsuarioSchema = new Schema({
     required: true,
     default: false,
   },
-  // registro: {
-  //   type: String,
-  //   required: true,
-  // },
-  // formacao: {
-  //   required: true,
-  //   type: String,
-  // },
+  registro: {
+    type: String,
+    required: true,
+  },
+  formacao: {
+    required: true,
+    type: String,
+  },
 });
 
 UsuarioSchema.pre("save", async function (next) {
