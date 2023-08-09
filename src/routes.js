@@ -17,6 +17,19 @@ const rotas = Router();
 rotas.post("/usuarios", UsuarioValidator.create, UsuarioController.create);
 rotas.get("/usuarios", verificarJwt, UsuarioController.read);
 rotas.get("/usuarios/:id", UsuarioController.readById);
+rotas.put(
+  "/usuarios/:id",
+  verificarJwt,
+  verificarUsuario,
+  UsuarioValidator.update,
+  UsuarioController.update
+);
+rotas.put(
+  "/usuarios/alterar_senha/:id",
+  UsuarioValidator.updateSenha,
+  UsuarioController.updateSenha
+);
+rotas.delete("/usuarios/:id", UsuarioController.destroy);
 
 rotas.get("/locais", LocalController.read);
 rotas.get("/locais/:id_local", LocalController.readById);
@@ -38,5 +51,6 @@ rotas.delete(
   ComentarioValidator.destroy,
   ComentarioController.destroy
 );
+rotas.get("/comentarios/:id_local", ComentarioController.readByLocal);
 
 module.exports = rotas;
