@@ -1,5 +1,6 @@
 
 const bcrypt = require("bcrypt");
+const { hash } = require("bcrypt");
 const UsuarioModel = require("../Models/UsuarioModel");
 
 class UsuarioController {
@@ -27,6 +28,14 @@ class UsuarioController {
 
     const usuario = await UsuarioModel.findById(id);
 
+    return res.status(200).json(usuarios);
+  }
+
+  async readById(req, res) {
+    const { id } = req.params;
+
+    const usuario = await UsuarioModel.findById(id);
+
     return res.status(200).json(usuario);
   }
 
@@ -41,27 +50,25 @@ class UsuarioController {
   }
   async updateSenha(req, res) {
     const { id } = req.params;
-    const { senhaAtual, senha} = req.body;
+    const { senhaAtual, senha } = req.body;
     const usuario = await UsuarioModel.findById(id).select("+senha");
 
     try {
-    
       const senhaCorreta = await bcrypt.compare(senhaAtual, usuario.senha);
-      
+
       if (!senhaCorreta) {
-        
         return res.status(400).json({ message: "Senha atual incorreta" });
       }
-    
+
       usuario.senha = senha;
       await usuario.save();
-     
+
       return res.status(200).json(usuario);
     } catch (error) {
       res.status(500).json({ message: "Erro!!", error: error.message });
     }
   }
-  
+
   async destroy(req, res) {
     const { id } = req.params;
 
