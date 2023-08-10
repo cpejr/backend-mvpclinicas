@@ -38,7 +38,7 @@ class UsuarioController {
 
   async updateImagem(req, res) {
     const { id } = req.params;
-    if (!id) return; // Tratar esse caso com validator
+    if (!id) return;
 
     const usuario = await UsuarioModel.findOne({ _id: id });
     if (usuario.avatar_url) {

@@ -24,12 +24,12 @@ rotas.get("/locais/:id_local", LocalController.readById);
 rotas.post("/login", AuthValidator.login, AuthController.login);
 rotas.put(
   "/usuariosimagem/:id",
-  //UsuarioValidator.updateImagem,
+  UsuarioValidator.updateImagem,
   UsuarioController.updateImagem
 );
 rotas.get(
   "/usuariosimagem/:id",
-  //UsuarioValidator.pegarImagem,
+  UsuarioValidator.pegarImagem,
   UsuarioController.pegarImagem
 );
 
