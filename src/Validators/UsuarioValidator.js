@@ -36,8 +36,42 @@ const create = validateRequest({
   }),
 });
 
+const destroy = validateRequest({
+  params: z.object({
+    id: z.custom(mongoose.isValidObjectId, "O id não é válido"),
+  }),
+});
+
+const update = validateRequest({
+  body: z.object({
+    nome: z.string().optional(),
+    telefone: z.string().optional(),
+    data_nascimento: z.date().optional(),
+    email: z.string().email("O email é inválido").optional(),
+    senha: z.string().optional(),
+    avatar_url: z.string().optional(),
+    crm: z.string().optional(),
+    uni_federativa: z.string().optional(),
+    admin: z.boolean().optional(),
+  }),
+  params: z.object({
+    id: z.custom(mongoose.isValidObjectId, "O id não é válido"),
+  }),
+});
+const updateSenha = validateRequest({
+  body: z.object({
+    senhaAtual: z.string({ required_error: "A senha atual é obrigatória" }),
+    senha: z.string({ required_error: "A nova senha é obrigatória" }),
+  }),
+  params: z.object({
+    id: z.custom(mongoose.isValidObjectId, "O id não é válido"),
+  }),
+})
 module.exports = {
   updateImagem,
   pegarImagem,
+  destroy,
+  update,
   create,
+  updateSenha
 };
