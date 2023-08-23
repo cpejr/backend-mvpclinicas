@@ -7,7 +7,7 @@ const {
   PutObjectCommand,
   S3Client,
 } = require("@aws-sdk/client-s3");
-require("dotenv").config(); // Possível resolver o processamento do .env de outra maneira. Pode checar o IZT, no package.json
+require("dotenv").config();
 const randomFileName = require("../../utils/general/nomeAleatoriodeArquivo.js");
 
 const s3 = new S3Client({
@@ -17,7 +17,6 @@ const s3 = new S3Client({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
 });
-const Readable = require("stream").Readable;
 
 async function pegarAquivo(key) {
   const params = {
@@ -34,21 +33,7 @@ async function pegarAquivo(key) {
     stream.once("error", reject);
   });
 }
-// async function pegarAquivo(key) {
-//   const _s3 = new s3({
-//     region: process.env.AWS_REGION,
-//     credentials: {
-//       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-//       secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-//     },
-//   });
-//   const resp = await s3.getObject({
-//     Bucket: process.env.AWS_BUCKET_NAME,
-//     Key: key,
-//   });
-//   console.info(await new Response(resp.Body, {}).text());
-//   return 1;
-// }
+
 async function enviarArquivo({ file, ACL }) {
   const key = randomFileName("") + ".json";
   const params = {
