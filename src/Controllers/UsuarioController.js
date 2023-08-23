@@ -74,6 +74,7 @@ class UsuarioController {
     const usuario = await UsuarioModel.findOne({ _id: id });
 
     let resultado;
+    
     if (!usuario.avatar_url) resultado = await pegarAquivo("defaultPfp.json");
     else {
       try {
