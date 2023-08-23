@@ -36,11 +36,11 @@ class LocalController {
   }
 
   async readById(req, res) {
-    const { id } = req.params;
+    const { id_local } = req.params;
 
-    const usuario = await UsuarioModel.findById(id);
+    const local = await LocalModel.findById(id_local);
 
-    return res.status(200).json(usuario);
+    return res.status(200).json(local);
   }
 
   async create(req, res) {

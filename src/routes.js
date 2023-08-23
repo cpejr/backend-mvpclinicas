@@ -64,7 +64,7 @@ rotas.get(
   UsuarioController.pegarImagem
 );
 
-rotas.get("/comentarios/:id_local", verificarJwt, ComentarioController.readByLocal);
+rotas.get("/comentarios/:id_local", ComentarioController.readByLocal);
 rotas.get(
   "/comentarios/usuario/:id_usuario",
   verificarJwt,
