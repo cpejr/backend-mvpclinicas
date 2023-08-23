@@ -36,11 +36,22 @@ class LocalController {
   }
 
   async readById(req, res) {
-    const { id_local } = req.params;
+    const { id } = req.params;
 
-    const local = await LocalModel.findById(id_local);
+    const usuario = await UsuarioModel.findById(id);
 
-    return res.status(200).json(local);
+    return res.status(200).json(usuario);
+  }
+
+  async create(req, res) {
+    try {
+      const novoLocal = await LocalModel.create(req.body);
+      return res
+        .status(200)
+        .json({ message: "Novo local cadastrado com sucesso!", novoLocal });
+    } catch (error) {
+      res.status(500).json({ message: "Erro!!", error: error.message });
+    }
   }
 
   async destroy(req, res) {

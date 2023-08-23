@@ -10,6 +10,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 app.use(rotas);
+app.use("*", (req, res) => {
+  res.status(404).json({ message: `Rota '${req.baseUrl}' não encontrada` });
+});
 var bodyParser = require("body-parser");
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(
@@ -19,8 +22,5 @@ app.use(
     parameterLimit: 50000,
   })
 );
-app.use("*", (req, res) => {
-  res.status(404).json({ message: `Rota '${req.baseUrl}' não encontrada` });
-});
 
 module.exports = app;
