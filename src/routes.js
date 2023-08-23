@@ -4,7 +4,6 @@ const LocalController = require("./Controllers/LocalController");
 const AuthController = require("./Controllers/AuthController");
 const ComentarioController = require("./Controllers/ComentarioController");
 const UsuarioController = require("./Controllers/UsuarioController");
-const LocalValidator = require("./Validators/LocalValidator");
 
 const verificarJwt = require("./Middlewares/verificarJwt");
 const verificarUsuario = require("./Middlewares/verificarUsuario");
