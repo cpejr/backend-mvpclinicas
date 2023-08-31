@@ -19,8 +19,8 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.1.1",
     "multer": "^1.4.5-lts.1",
-    "nodemon": "^2.0.22",
-    "s3rver": "^3.7.1",
+    "nodemon": "^3.0.1",
+    "s3rver": "^2.2.9",
     "zod": "^3.21.4",
     "zod-express-middleware": "^1.4.0"
   }
