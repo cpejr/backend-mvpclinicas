@@ -30,7 +30,7 @@ class AuthController {
         { expiresIn: process.env.JWT_EXPIRE_IN }
       );
 
-      res.status(200).json({ token });
+      res.status(200).json({ token, usuario });
     } catch (error) {
       res.status(500).json({ message: "Erro no Login", error: error.message });
     }

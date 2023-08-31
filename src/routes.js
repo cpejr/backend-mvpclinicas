@@ -17,9 +17,14 @@ const ComentarioValidator = require("./Validators/ComentarioValidator");
 const rotas = Router();
 
 rotas.post("/usuarios", UsuarioValidator.create, UsuarioController.create);
-rotas.get("/usuarios", verificarJwt, UsuarioController.read);
+rotas.get("/usuarios", UsuarioController.read);
 rotas.get("/usuarios/:id", UsuarioController.readById);
-rotas.delete("/locais/:id_local", LocalController.destroy, LocalValidator.destroy, LocalValidator.ConfereAdmin);
+rotas.delete(
+  "/locais/:id_local",
+  LocalController.destroy,
+  LocalValidator.destroy,
+  LocalValidator.ConfereAdmin
+);
 rotas.put(
   "/usuarios/:id",
   verificarJwt,
@@ -35,7 +40,9 @@ rotas.put(
 rotas.delete("/usuarios/:id", UsuarioController.destroy);
 
 rotas.get("/locais", LocalController.read);
+rotas.post("/locais", verificarJwt, verificarUsuario,LocalController.create);
 rotas.get("/locais/:id_local", LocalController.readById);
+
 rotas.post("/login", AuthValidator.login, AuthController.login);
 
 rotas.post("/login", AuthValidator.login, AuthController.login);

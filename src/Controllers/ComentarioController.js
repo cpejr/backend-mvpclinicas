@@ -21,14 +21,13 @@ class ComentarioController {
   async create(req, res) {
     const { id_local } = req.params;
     const data = req.body;
-
     const local = await LocalModel.findById(
       new mongoose.Types.ObjectId(id_local)
     );
     if (!local)
       return res
         .status(400)
-        .json({ message: "O id do local não pode ser encontrado!" });
+        .json({ message: "O id do local não pôde ser encontrado!" });
 
     const comentario = await ComentarioModel.create({
       id_usuario: data.id_usuario,
