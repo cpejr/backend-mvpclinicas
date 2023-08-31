@@ -4,10 +4,6 @@ const { default: mongoose } = require("mongoose");
 
 const create = validateRequest({
   body: z.object({
-    id_usuario: z.custom(
-      mongoose.isValidObjectId,
-      "O id do usuário é invalido"
-    ),
     comentario: z.object({
       "Qual foi o cargo exercido no local?": z.string(),
       "De quanto era o salário pago?": z.string().optional(),

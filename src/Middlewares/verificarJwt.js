@@ -7,12 +7,11 @@ function verificarJwt(req, res, next) {
       .status(403)
       .json({ message: "Header de autorização não encontrado" });
 
-  const [bearer, token] = authHeader.split("");
-
+  const [bearer, token] = authHeader.trim().split(" ");
   if (!/^Bearer$/.test(bearer))
-    return res
-      .status(403)
-      .json({ message: "Header de autorização mal formatado" });
+    return res.status(403).json({
+      message: `Header de autorização mal formatado`,
+    });
 
   if (!token)
     return res.status(403).json({ message: "JWT token não encontrado" });

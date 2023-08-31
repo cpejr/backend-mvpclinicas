@@ -19,7 +19,12 @@ const rotas = Router();
 rotas.post("/usuarios", UsuarioValidator.create, UsuarioController.create);
 rotas.get("/usuarios", UsuarioController.read);
 rotas.get("/usuarios/:id", UsuarioController.readById);
-rotas.delete("/locais/:id_local", LocalController.destroy, LocalValidator.destroy, LocalValidator.ConfereAdmin);
+rotas.delete(
+  "/locais/:id_local",
+  LocalController.destroy,
+  LocalValidator.destroy,
+  LocalValidator.ConfereAdmin
+);
 rotas.put(
   "/usuarios/:id",
   verificarJwt,
