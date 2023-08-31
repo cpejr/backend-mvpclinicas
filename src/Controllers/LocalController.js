@@ -43,6 +43,17 @@ class LocalController {
     return res.status(200).json(local);
   }
 
+  async create(req, res) {
+    try {
+      const novoLocal = await LocalModel.create(req.body);
+      return res
+        .status(200)
+        .json({ message: "Novo local cadastrado com sucesso!", novoLocal });
+    } catch (error) {
+      res.status(500).json({ message: "Erro!!", error: error.message });
+    }
+  }
+
   async destroy(req, res) {
     const { id_local } = req.params;
 
