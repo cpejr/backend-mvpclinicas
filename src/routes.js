@@ -28,7 +28,6 @@ rotas.delete(
 rotas.put(
   "/usuarios/:id",
   verificarJwt,
-  verificarUsuario,
   UsuarioValidator.update,
   UsuarioController.update
 );
