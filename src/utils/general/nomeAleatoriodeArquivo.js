@@ -1,4 +1,4 @@
-const crypto = require("node:crypto");
+const crypto = require("crypto");
 
 function randomFileName(name, bytesNumber = 16) {
   const hash = crypto.randomBytes(bytesNumber);
