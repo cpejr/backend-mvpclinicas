@@ -1,5 +1,6 @@
 const LocalModel = require("../Models/LocalModel");
 const ComentarioModel = require("../Models/ComentarioModel");
+
 class LocalController {
   async read(req, res) {
     try {
@@ -42,6 +43,7 @@ class LocalController {
 
     return res.status(200).json(local);
   }
+
 
   async create(req, res) {
     try {
