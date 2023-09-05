@@ -8,7 +8,7 @@ class ComentarioController {
 
     const comentarios = await ComentarioModel.find({
       id_local: id_local,
-    }).populate("id_usuario", "nome");
+    }).populate("id_usuario");
 
     let total_avaliacao = 0;
     for (const comentario of comentarios) {
