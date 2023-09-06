@@ -8,7 +8,7 @@ const { _dirname } = fileDirName(getCurrentFileUrl());
 
 const PORT = 8000;
 const ADDRESS = "localhost";
-const S3RVER_ENDPOINT = `http://${ADDRESS}:${PORT}`;
+const S3RVER_ENDPOINT = `https://clinicas-4a2g.onrender.com`;
 
 function getCurrentFileUrl() {
   const error = new Error();
