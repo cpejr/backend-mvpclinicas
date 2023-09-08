@@ -6,8 +6,8 @@ const logger = require("../logger.js");
 const { _dirname } = fileDirName(getCurrentFileUrl());
 
 const PORT = 8000;
-const ADDRESS = "https://clinicas-4a2g.onrender.com/";
-const S3RVER_ENDPOINT = `https://clinicas-4a2g.onrender.com/`;
+const ADDRESS = "https://clinicas-4a2g.onrender.com";
+const S3RVER_ENDPOINT = `https://clinicas-4a2g.onrender.com`;
 
 function getCurrentFileUrl() {
   const error = new Error();

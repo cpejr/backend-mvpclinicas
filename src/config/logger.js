@@ -1,4 +1,4 @@
-const allowedOrigins = "https://mvpclinicas.netlify.app";
+const allowedOrigins = "*";
 const corsOptions = {
   origin: (origin, callback) => {
     if (origin === undefined || allowedOrigins.indexOf(origin) !== -1) {
