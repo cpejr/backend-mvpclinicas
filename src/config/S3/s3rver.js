@@ -1,14 +1,13 @@
 const path = require("node:path");
 const S3rver = require("s3rver");
-//const { InternalServerError } = require('../../errors/baseErrors.js');
 const fileDirName = require("../../utils/general/fileDirName.js");
 const logger = require("../logger.js");
 
 const { _dirname } = fileDirName(getCurrentFileUrl());
 
 const PORT = 8000;
-const ADDRESS = "localhost";
-const S3RVER_ENDPOINT = `https://clinicas-4a2g.onrender.com`;
+const ADDRESS = "https://clinicas-4a2g.onrender.com/";
+const S3RVER_ENDPOINT = `https://clinicas-4a2g.onrender.com/`;
 
 function getCurrentFileUrl() {
   const error = new Error();
@@ -29,7 +28,7 @@ function getCurrentFileUrl() {
 function s3rverConfig() {
   return new Promise((resolve, reject) => {
     const instance = new S3rver({
-      port: PORT,
+      //  port: PORT,
       address: ADDRESS,
       silent: false,
       directory: path.resolve(_dirname, "../../../temp/uploads"),
@@ -40,12 +39,12 @@ function s3rverConfig() {
       ],
     });
 
-    instance.run((error, { address, port } = {}) => {
+    instance.run((error, { address } = {}) => {
       if (error) {
         reject(err);
       } else {
         logger.info(
-          `✅ Established connection with S3rver at address ${address} and port ${port}`
+          `✅ Established connection with S3rver at address ${address}`
         );
         resolve();
       }
