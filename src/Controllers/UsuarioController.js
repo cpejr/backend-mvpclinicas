@@ -1,4 +1,3 @@
-
 const bcrypt = require("bcrypt");
 const { hash } = require("bcrypt");
 const UsuarioModel = require("../Models/UsuarioModel");
@@ -13,22 +12,22 @@ const {
 class UsuarioController {
   async create(req, res) {
     try {
+      const usuarios = await UsuarioModel.create(req.body);
 
-            const usuarios = await UsuarioModel.create(req.body);
-            
-            const { senha, ...novoUsuario} = usuarios.toObject();
+      const { senha, ...novoUsuario } = usuarios.toObject();
 
-            return res.status(200).json({ message: 'Usuário cadastrado com sucesso!', usuarios });
-
-        } catch (error) {
-            res.status(500).json({ message: "Erro!!", error: error.message });
-        }
+      return res
+        .status(200)
+        .json({ message: "Usuário cadastrado com sucesso!", usuarios });
+    } catch (error) {
+      res.status(500).json({ message: "Erro!!", error: error.message });
     }
-    async read(req, res) {
-        const usuarios = await UsuarioModel.find();
+  }
+  async read(req, res) {
+    const usuarios = await UsuarioModel.find();
 
-        return res.status(200).json(usuarios);
-    }
+    return res.status(200).json(usuarios);
+  }
 
   async readById(req, res) {
     const { id } = req.params;
@@ -61,7 +60,7 @@ class UsuarioController {
       file,
       ACL: "public-read	",
     });
-    //const url = `https://${process.env.AWS_BUCKET_NAME}.s3.amazonaws.com/${key}`;
+
     usuario.set({ avatar_url: key }); // O upload file não retorna uma url
     await usuario.save();
 
@@ -74,7 +73,7 @@ class UsuarioController {
     const usuario = await UsuarioModel.findOne({ _id: id });
 
     let resultado;
-    
+
     if (!usuario.avatar_url) resultado = await pegarAquivo("defaultPfp.json");
     else {
       try {

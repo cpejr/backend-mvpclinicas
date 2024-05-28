@@ -6,5 +6,3 @@ async function startDB() {
 }
 
 module.exports = startDB;
-
-//grrDyeLiSoLbkgo1
