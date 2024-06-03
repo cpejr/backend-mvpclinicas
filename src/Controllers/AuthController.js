@@ -16,7 +16,6 @@ class AuthController {
         senha,
         usuarioEncontrado.senha
       );
-      ehCorrespondente++;
       if (!ehCorrespondente)
         return res.status(403).json({ message: "E-mail ou senha inválidos" });
 
