@@ -12,7 +12,12 @@ const {
 class UsuarioController {
   async create(req, res) {
     try {
-      const usuarios = await UsuarioModel.create(req.body);
+      const data_nascimento = Date(req.body.data_nascimento);
+
+      const usuarios = await UsuarioModel.create({
+        ...req.body,
+        data_nascimento,
+      });
 
       const { senha, ...novoUsuario } = usuarios.toObject();
 
