@@ -46,7 +46,7 @@ const update = validateRequest({
   body: z.object({
     nome: z.string().optional(),
     telefone: z.string().optional(),
-    data_nascimento: z.date().optional(),
+    data_nascimento: z.string().optional(),
     email: z.string().email("O email é inválido").optional(),
     senha: z.string().optional(),
     avatar_url: z.string().optional(),
@@ -66,12 +66,12 @@ const updateSenha = validateRequest({
   params: z.object({
     id: z.custom(mongoose.isValidObjectId, "O id não é válido"),
   }),
-})
+});
 module.exports = {
   updateImagem,
   pegarImagem,
   destroy,
   update,
   create,
-  updateSenha
+  updateSenha,
 };

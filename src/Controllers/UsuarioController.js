@@ -93,7 +93,7 @@ class UsuarioController {
 
   async update(req, res) {
     const { id } = req.params;
-
+    console.log(req.body);
     const usuario = await UsuarioModel.findByIdAndUpdate(id, req.body, {
       new: true,
     });
