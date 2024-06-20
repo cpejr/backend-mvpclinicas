@@ -12,7 +12,12 @@ const {
 class UsuarioController {
   async create(req, res) {
     try {
-      const usuarios = await UsuarioModel.create(req.body);
+      const data_nascimento = Date(req.body.data_nascimento);
+
+      const usuarios = await UsuarioModel.create({
+        ...req.body,
+        data_nascimento,
+      });
 
       const { senha, ...novoUsuario } = usuarios.toObject();
 
@@ -88,7 +93,7 @@ class UsuarioController {
 
   async update(req, res) {
     const { id } = req.params;
-
+    console.log(req.body);
     const usuario = await UsuarioModel.findByIdAndUpdate(id, req.body, {
       new: true,
     });

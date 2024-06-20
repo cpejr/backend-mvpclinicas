@@ -24,8 +24,8 @@ const LocalSchema = new Schema({
     required: true,
   },
   foto_url: {
-      type: String,
-      required: true,
+    type: String,
+    required: true,
   },
 });
 
