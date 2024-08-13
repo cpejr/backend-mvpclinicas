@@ -21,9 +21,7 @@ class UsuarioController {
 
       const { senha, ...novoUsuario } = usuarios.toObject();
 
-      return res
-        .status(200)
-        .json({ message: "Usuário cadastrado com sucesso!", usuarios });
+      return res.status(200).json({ message: "Usuário cadastrado com sucesso!", usuarios });
     } catch (error) {
       res.status(500).json({ message: "Erro!!", error: error.message });
     }
@@ -93,7 +91,6 @@ class UsuarioController {
 
   async update(req, res) {
     const { id } = req.params;
-    console.log(req.body);
     const usuario = await UsuarioModel.findByIdAndUpdate(id, req.body, {
       new: true,
     });

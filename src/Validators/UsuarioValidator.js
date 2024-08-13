@@ -22,11 +22,9 @@ const create = validateRequest({
     data_nascimento: z.string({
       required_error: "A data de nascimento é obrigatória",
     }),
-    email: z
-      .string({ required_error: "O email é obrigatório" })
-      .email("O email é inválido"),
+    email: z.string({ required_error: "O email é obrigatório" }).email("O email é inválido"),
     senha: z.string({ required_error: "A senha é obrigatória" }),
-    registro: z.string({ required_error: "O resgistro é obrigatório" }),
+    registro: z.string().optional(),
     formacao: z.string({
       required_error: "A formação profissional é obrigatória",
     }),

@@ -42,7 +42,7 @@ const UsuarioSchema = new Schema({
   },
   registro: {
     type: String,
-    required: true,
+    required: false,
   },
   formacao: {
     required: true,
