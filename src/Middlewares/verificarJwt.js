@@ -8,15 +8,19 @@ function verificarJwt(req, res, next) {
   const [bearer, token] = authHeader.trim().split(" ");
   if (!/^Bearer$/.test(bearer))
     return res.status(403).json({
-      message: `Header de autorização mal formatado`,
+      message: "Header de autorização mal formatado",
     });
 
   if (!token) return res.status(403).json({ message: "JWT token não encontrado" });
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, { usuario }) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
     if (err) return res.status(403).json({ message: "JWT token inválido" });
 
-    req.usuarioId = usuario.id;
+    if (!payload || !payload.usuario) {
+      return res.status(403).json({ message: "JWT token mal formado" });
+    }
+
+    req.usuarioId = payload.usuario.id;
     next();
   });
 }
