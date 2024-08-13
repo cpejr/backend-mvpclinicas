@@ -25,7 +25,15 @@ const LocalSchema = new Schema({
   },
   foto_url: {
     type: String,
-    required: true,
+    required: false,
+  },
+  tipo: {
+    type: String,
+    required: false,
+  },
+  hospitalProprio: {
+    type: String,
+    required: false,
   },
 });
 

@@ -15,9 +15,7 @@ async function getPlaceImage(placeName, placeAddress) {
 
     if (data.results && data.results.length > 0) {
       const place = data.results[0];
-      const photoReference = place.photos
-        ? place.photos[0].photo_reference
-        : null;
+      const photoReference = place.photos ? place.photos[0].photo_reference : null;
 
       const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${GOOGLE_API_KEY}`;
       return photoUrl;
@@ -29,9 +27,7 @@ async function getPlaceImage(placeName, placeAddress) {
       const data = await response.json();
       if (data.results && data.results.length > 0) {
         const place = data.results[0];
-        const photoReference = place.photos
-          ? place.photos[0].photo_reference
-          : null;
+        const photoReference = place.photos ? place.photos[0].photo_reference : null;
 
         const photoUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photoReference}&key=${GOOGLE_API_KEY}`;
         return photoUrl;
@@ -93,10 +89,9 @@ class LocalController {
 
   async create(req, res) {
     try {
+      console.log(req.body);
       const novoLocal = await LocalModel.create(req.body);
-      return res
-        .status(200)
-        .json({ message: "Novo local cadastrado com sucesso!", novoLocal });
+      return res.status(200).json({ message: "Novo local cadastrado com sucesso!", novoLocal });
     } catch (error) {
       res.status(500).json({ message: "Erro!!", error: error.message });
     }
@@ -111,8 +106,7 @@ class LocalController {
     });
     const localDeletado = await LocalModel.findByIdAndDelete(id_local);
 
-    if (!localDeletado)
-      return res.status(404).json({ message: "Local não encontrado" });
+    if (!localDeletado) return res.status(404).json({ message: "Local não encontrado" });
 
     return res.status(200).json(localDeletado);
   }
