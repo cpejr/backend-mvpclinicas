@@ -5,4 +5,4 @@ const Loaders = require("./Loaders/index");
 dotenv.config();
 Loaders.start();
 
-app.listen(8000, () => console.log("Servidor Rodando"));
+app.listen(7000, () => console.log("Servidor Rodando"));
