@@ -39,7 +39,7 @@ rotas.put(
 rotas.delete("/usuarios/:id", UsuarioController.destroy);
 
 rotas.get("/locais", LocalController.read);
-rotas.post("/locais", verificarJwt, verificarUsuario,LocalController.create);
+rotas.post("/locais", verificarJwt, verificarUsuario, LocalController.create);
 rotas.get("/locais/:id_local", LocalController.readById);
 
 rotas.post("/login", AuthValidator.login, AuthController.login);

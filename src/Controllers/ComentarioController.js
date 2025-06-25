@@ -19,7 +19,9 @@ class ComentarioController {
     return res.status(200).json({ comentarios, media_avaliacao });
   }
   async create(req, res) {
+    console.log("olaaa");
     const { id_local } = req.params;
+    console.log("ola");
     const data = req.body;
     const local = await LocalModel.findById(
       new mongoose.Types.ObjectId(id_local)

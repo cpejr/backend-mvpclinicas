@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 class AuthController {
   async login(req, res) {
     try {
+      console.log("to vindo pra ca");
       const { email, senha } = req.body;
       const usuarioEncontrado = await UsuarioModel.findOne({ email }).select(
         "+senha"
