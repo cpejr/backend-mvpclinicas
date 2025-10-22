@@ -4,5 +4,5 @@ const Loaders = require("./Loaders/index");
 
 dotenv.config();
 Loaders.start();
-
-app.listen(7000, () => console.log("Servidor Rodando"));
+const port = process.env.PORT || 7000;
+app.listen(port, () => console.log("Servidor Rodando"));
